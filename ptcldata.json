@@ -1,0 +1,63 @@
+{
+  "model": {
+    "min_input_size": 50,
+    "max_input_size": 448,
+    "anchors": [
+      55,
+      69,
+      75,
+      234,
+      133,
+      240,
+      136,
+      129,
+      142,
+      363,
+      203,
+      290,
+      228,
+      184,
+      285,
+      359,
+      341,
+      260
+    ],
+    "labels": [
+      "ptcl_address",
+      "ptcl_dateblock",
+      "ptcl_grandtotal",
+      "ptcl_header",
+      "ptcl_phonenumber"
+    ]
+  },
+  "train": {
+    "train_image_folder": "/content/drive/My Drive/Colab Notebooks/ptcltrainimgs/",
+    "train_annot_folder": "/content/drive/My Drive/Colab Notebooks/ptcltrainlbls/",
+    "cache_name": "/content/drive/My Drive/Colab Notebooks/ptclmod.pkl",
+    "train_times": 8,
+    "batch_size": 8,
+    "learning_rate": 0.0001,
+    "nb_epochs": 100,
+    "warmup_epochs": 15,
+    "ignore_thresh": 0.7,
+    "gpus": "1",
+    "grid_scales": [
+      1,
+      1,
+      1
+    ],
+    "obj_scale": 5,
+    "noobj_scale": 1,
+    "xywh_scale": 1,
+    "class_scale": 1,
+    "tensorboard_dir": "/content/drive/My Drive/Colab Notebooks/ptcllogs",
+    "saved_weights_name": "/content/drive/My Drive/Colab Notebooks/ptclmodel.h5",
+    "debug": true
+  },
+  "valid": {
+    "valid_image_folder": "",
+    "valid_annot_folder": "",
+    "cache_name": "",
+    "valid_times": 1
+  }
+}
