@@ -16,5 +16,6 @@ The received image goes through following processes in the server:
 
 
 Language used: Python
+
 Major Libraries used: PyTesseract, TensorFlow, Keras, OpenCV
 
