@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 from PIL import Image
 import tempfile
 import imutils
-IMAGE_SIZE = 780
+IMAGE_SIZE = 640
 BINARY_THREHOLD = 180
 
 size = None
@@ -27,44 +27,11 @@ def pre_process_image(imagepath):
         images = [img, 0, th1,
                   img, 0, th2,
                   blur, 0, th3]
-        # titles = ['Original Noisy Image','Histogram','Global Thresholding (v=127)',
-        #           'Original Noisy Image','Histogram',"Otsu's Thresholding",
-        #           'Gaussian filtered Image','Histogram',"Otsu's Thresholding"]
-        #
-        # for i in range(3):
-        #     plt.subplot(3,3,i*3+1),plt.imshow(images[i*3],'gray')
-        #     plt.title(titles[i*3]), plt.xticks([]), plt.yticks([])
-        #     plt.subplot(3,3,i*3+2),plt.hist(images[i*3].ravel(),256)
-        #     plt.title(titles[i*3+1]), plt.xticks([]), plt.yticks([])
-        #     plt.subplot(3,3,i*3+3),plt.imshow(images[i*3+2],'gray')
-        #     plt.title(titles[i*3+2]), plt.xticks([]), plt.yticks([])
-        #
-        #     plt.imsave("file"+str(i*3+2)+".jpg", images[i*3+2],cmap='gray')
-        #
-        # plt.show()
-        # plt.imshow(images[i*3+2],'gray')
 
         cv2.imwrite(imagepath, images[2 * 3 + 2])
 
     else:
-        # Adaptive Thresholding
-        # th3 = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-        #
-        # # kernel = np.ones((1, 1), np.uint8)
-        # # opening = cv2.morphologyEx(th3, cv2.MORPH_OPEN, kernel)
-        # # closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel)
-        # # # img = image_smoothening(img)
-        # # or_image = cv2.bitwise_or(img, closing)
-        #
-        # # To reduce salt and pepper noise
-        # median_blur = cv2.medianBlur(th3, 5)
-        #
-        # # using close morphology transform after thresholding
-        # # it will first dilate and then erode the image and using a good kernel
-        # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-        # morph_img = cv2.morphologyEx(median_blur, cv2.MORPH_CLOSE, kernel)
-        #
-        # cv2.imwrite(imagepath, morph_img)
+
         pass
     return 1
 
