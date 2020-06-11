@@ -20,10 +20,10 @@ sess = tf.Session()
 graph = tf.get_default_graph()
 
 set_session(sess)
-#infer_model_gas = load_model("modelgas1.h5")
-#infer_model_iesco = load_model("iescomodel.h5")
-#infer_model_ptcl = load_model("ptclmodel.h5")
+infer_model_gas = load_model("modelgas1.h5")
+infer_model_iesco = load_model("iescomodel.h5")
 
+infer_model_ptcl = load_model("ptclmodel.h5")
 
 from PreProcessImage import split
 
@@ -337,6 +337,10 @@ def draw_boxes(output_path, image, boxes, labels, obj_thresh, quiet=True):
                 cropped = image[box.ymin-50:box.ymax+3, box.xmin-30:box.xmax+3]
             elif ("ptcl_address" in label_str):
                 cropped = image[box.ymin:box.ymax, box.xmin-30:box.xmax ]
+            elif "cropped_e" in label_str:
+                cropped = image[box.ymin-20:box.ymax+20, box.xmin - 30:box.xmax+30]
+            elif "gData" in label_str:
+                cropped = image[box.ymin + 20:box.ymax, box.xmin:box.xmax]
             else:
                 if box.xmin < 0:
                     box.xmin=0
@@ -417,16 +421,15 @@ def executePredictYolo(model):
     if model =="0":
         print("DETECTING GAS")
         config_path = "gasconfig1.json"
-        #infer_model = infer_model_gas
+        infer_model = infer_model_gas
 
     elif model == "1":
         config_path = "iescoconfig.json"
-        #infer_model = infer_model_iesco
+        infer_model = infer_model_iesco
 
     else:
         config_path = "ptcldata.json"
-        #infer_model = load_model("ptclmodel.h5")
-        #infer_model = infer_model_ptcl
+        infer_model = infer_model_ptcl
     input_path = "ptcl_test_image/"
     #input_path = testImage
     output_path = "Outputs/"
